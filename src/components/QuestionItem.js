@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-function QuestionItem({ question }) {
+function QuestionItem({ question, deleteQuestion, updateQuestion }) {
   const { id, prompt, answers, correctIndex } = question;
 
   const options = answers.map((answer, index) => (
@@ -9,15 +9,22 @@ function QuestionItem({ question }) {
     </option>
   ));
 
+  const [newCorrectAnswer, setNewCorrectAnswer] = useState(correctIndex)
+
+  const handleChange = (event) => {
+    setNewCorrectAnswer(event.target.value)
+    updateQuestion({...question, correctIndex: newCorrectAnswer})
+  }
+
   return (
     <li>
       <h4>Question {id}</h4>
       <h5>Prompt: {prompt}</h5>
       <label>
         Correct Answer:
-        <select defaultValue={correctIndex}>{options}</select>
+        <select value={newCorrectAnswer} onChange={handleChange} defaultValue={correctIndex}>{options}</select>
       </label>
-      <button>Delete Question</button>
+      <button onClick={(e) =>  deleteQuestion(id)}>Delete Question</button>
     </li>
   );
 }
