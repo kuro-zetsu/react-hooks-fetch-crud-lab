@@ -34,11 +34,14 @@ function App() {
     }
   };
 
-  const deleteQuestion = (id) => {
+  const deleteQuestion = async (id) => {
     try {
-      fetch(`${url}/${id}`, {
+      const response = await fetch(`${url}/${id}`, {
         method: "DELETE",
       });
+
+      if(!response.ok) throw new Error("Unable to delete question")
+        
       setQuestions((prevQuestions) =>
         prevQuestions.filter((question) => question.id !== id)
       );
@@ -47,22 +50,25 @@ function App() {
     }
   };
 
-  const updateQuestion = (changedQuestion) => {
+  const updateQuestion = async (changedQuestion) => {
     try {
+      const response = await fetch(`${url}/${changedQuestion.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          correctIndex: Number(changedQuestion.correctIndex),
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to update correct answer")
+
       setQuestions((prevQuestions) =>
         prevQuestions.map((question) =>
           question.id === changedQuestion.id
-            ? { ...question, correctIndex: changedQuestion.correctIndex }
+            ? { ...question, correctIndex: Number(changedQuestion.correctIndex) }
             : question
         )
       );
-      fetch(`${url}/${changedQuestion.id}`, {
-        method: "PATCH",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          correctIndex: changedQuestion.correctIndex
-        })
-      })
     } catch (error) {
       console.error(`Failed to update correct answer: ${error}`);
     }

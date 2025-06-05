@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import QuestionItem from "./QuestionItem";
 
 function QuestionList({questions, deleteQuestion, updateQuestion}) {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function QuestionForm({addQuestion}) {
+function QuestionForm({ addQuestion }) {
   const [formData, setFormData] = useState({
     prompt: "",
     answer1: "",
@@ -26,10 +26,18 @@ function QuestionForm({addQuestion}) {
         formData.answer1,
         formData.answer2,
         formData.answer3,
-        formData.answer4
+        formData.answer4,
       ],
-      correctIndex: formData.correctIndex
-  });
+      correctIndex: formData.correctIndex,
+    });
+    setFormData({
+      prompt: "",
+      answer1: "",
+      answer2: "",
+      answer3: "",
+      answer4: "",
+      correctIndex: "0",
+    });
   }
 
   return (
@@ -39,8 +47,8 @@ function QuestionForm({addQuestion}) {
         <label>
           Prompt:
           <input
-            type="text"
-            name="prompt"
+            type='text'
+            name='prompt'
             value={formData.prompt}
             onChange={handleChange}
           />
@@ -48,8 +56,8 @@ function QuestionForm({addQuestion}) {
         <label>
           Answer 1:
           <input
-            type="text"
-            name="answer1"
+            type='text'
+            name='answer1'
             value={formData.answer1}
             onChange={handleChange}
           />
@@ -57,8 +65,8 @@ function QuestionForm({addQuestion}) {
         <label>
           Answer 2:
           <input
-            type="text"
-            name="answer2"
+            type='text'
+            name='answer2'
             value={formData.answer2}
             onChange={handleChange}
           />
@@ -66,8 +74,8 @@ function QuestionForm({addQuestion}) {
         <label>
           Answer 3:
           <input
-            type="text"
-            name="answer3"
+            type='text'
+            name='answer3'
             value={formData.answer3}
             onChange={handleChange}
           />
@@ -75,8 +83,8 @@ function QuestionForm({addQuestion}) {
         <label>
           Answer 4:
           <input
-            type="text"
-            name="answer4"
+            type='text'
+            name='answer4'
             value={formData.answer4}
             onChange={handleChange}
           />
@@ -84,17 +92,17 @@ function QuestionForm({addQuestion}) {
         <label>
           Correct Answer:
           <select
-            name="correctIndex"
-            value={formData.correctIndex}
+            name='correctIndex'
+            value={formData.correctIndex ?? "0"}
             onChange={handleChange}
           >
-            <option value="0">{formData.answer1}</option>
-            <option value="1">{formData.answer2}</option>
-            <option value="2">{formData.answer3}</option>
-            <option value="3">{formData.answer4}</option>
+            <option value='0'>{formData.answer1}</option>
+            <option value='1'>{formData.answer2}</option>
+            <option value='2'>{formData.answer3}</option>
+            <option value='3'>{formData.answer4}</option>
           </select>
         </label>
-        <button type="submit">Add Question</button>
+        <button type='submit'>Add Question</button>
       </form>
     </section>
   );

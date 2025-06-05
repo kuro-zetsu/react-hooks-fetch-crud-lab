@@ -9,7 +9,7 @@
         "onChange",
         "onForm"
       ],
-      "correctIndex": 0
+      "correctIndex": 2
     },
     {
       "id": 4,
@@ -32,6 +32,17 @@
         "controlled"
       ],
       "correctIndex": 1
+    },
+    {
+      "prompt": "what is a good letter?",
+      "answers": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "correctIndex": "2",
+      "id": 7
     }
   ]
 }
