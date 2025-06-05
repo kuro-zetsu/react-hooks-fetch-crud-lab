@@ -13,7 +13,7 @@ function QuestionItem({ question, deleteQuestion, updateQuestion }) {
 
   const handleChange = (event) => {
     setNewCorrectAnswer(event.target.value);
-    updateQuestion({ ...question, correctIndex: newCorrectAnswer });
+    updateQuestion({ ...question, correctIndex: event.target.value });
   };
 
   return (
